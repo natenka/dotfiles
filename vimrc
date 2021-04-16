@@ -11,9 +11,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Bundle 'chase/vim-ansible-yaml'
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'jnurmine/Zenburn'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -75,8 +73,6 @@ set sw=4
 set expandtab
 set autoindent
 syn on
-"colorscheme desert
-"colorscheme Tomorrow
 colorscheme zenburn
 "filetype indent on
 set autoread
@@ -121,21 +117,10 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 nmap <C-\> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
-
-
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 0
-"let g:syntastic_auto_loc_list = 0
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_aggregate_errors = 1
-"
-"let g:syntastic_check_on_wq = 0
-"
 set laststatus=2
 set statusline+=%f\ \ \ \ %l\:%c
 
