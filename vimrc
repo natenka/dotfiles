@@ -76,9 +76,13 @@ syn on
 colorscheme zenburn
 "filetype indent on
 set autoread
+set backspace=indent,eol,start
 set pastetoggle=<F2>
 nnoremap <F3> :w<CR>:!clear;python %<CR>
+"nnoremap <F3> :w<CR>:vert term python %<CR>
 nnoremap <F4> :w<CR>:!clear;black %<CR>
+nnoremap <F5> :w<CR>:vert terminal python -m pdb %<CR>
+tnoremap <ESC> <C-\><C-n>:q!<CR>
 
 "Change leader key
 let mapleader = ","
