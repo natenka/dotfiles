@@ -76,13 +76,6 @@ syn on
 colorscheme zenburn
 "filetype indent on
 set autoread
-set backspace=indent,eol,start
-set pastetoggle=<F2>
-nnoremap <F3> :w<CR>:!clear;python %<CR>
-"nnoremap <F3> :w<CR>:vert term python %<CR>
-nnoremap <F4> :w<CR>:!clear;black %<CR>
-nnoremap <F5> :w<CR>:vert terminal python -m pdb %<CR>
-tnoremap <ESC> <C-\><C-n>:q!<CR>
 
 "Change leader key
 let mapleader = ","
@@ -91,6 +84,20 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 "Replace all tabs with 4 whitespaces
 nnoremap <leader>T :%s/\t/    /<CR>
+nnoremap <leader>S :%s/\%u200b//<CR>
+nnoremap <leader>F :%s/[\xa0]/ /<CR>
+
+set pastetoggle=<F2>
+"tnoremap <ESC> <C-w>:q!<CR>
+nnoremap <leader>q :q<CR>
+set backspace=indent,eol,start
+"nnoremap <F3> :w<CR>:!clear;python %<CR>
+nnoremap <F3> :w<CR>:vert term python %<CR>
+nnoremap <F4> :w<CR>:!clear;black %<CR>
+nnoremap <F5> :w<CR>:vert terminal ++close python -m ipdb %<CR>
+"autocmd BufWinEnter *.py nmap <silent> <F5>:w<CR>:terminal python -m pdb %<CR>
+
+syn keyword pythonStatement async await
 
 "highlight search results (as you type)
 set incsearch
@@ -102,6 +109,13 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <leader>v V`]
 "to exit back to normal mode
 inoremap jj <ESC>
+
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+
 
 au BufRead,BufNewFile *.py set filetype=python
 
@@ -121,10 +135,15 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 nmap <C-\> :NERDTreeFind<CR>
 nmap <silent> <leader><leader> :NERDTreeToggle<CR>
 
+
+
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
-set statusline+=%#warningmsg#
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set laststatus=2
-set statusline+=%f\ \ \ \ %l\:%c
+set statusline+=%f\ \ \ \ %l\:%v
 
+set tabpagemax=30
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
